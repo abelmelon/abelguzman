@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang=”es”>
+<head>
+    <meta charset=”UTF-8”>
+    <meta name=”viewport” content=”width=device-width,
+    initial-scale=1.0”>
+    <title>Título de tu página</title>
+
+    <!--Favicon = icono de la pestaña del navegador-->
+    <link rel="icon" href="assets/img/[nombre de tu favicon]" type="image/x-icon">
+
+    <!--Traemos la hoja de estilos STYLES.CSS-->
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/change-mode.css">
+    <link rel="stylesheet" href="assets/css/fs-menu.css">
+
+    <!--Traemos las tipografías seleccionadas de GOOGLE FONTS. Conecta las tuyas reemplazando estas líneas de código-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- REJILLA ESTRUCTURA -->
+    <div class="grid">
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>    
+    </div>
+
+    <!-- ///////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- COMIENZA EL HEAER -->
+    <!-- ///////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+    <header class="main-container padding-small-v flex-row regular-gap vertical-center flex-align-space invert">
+       
+        <div id="logo" class="col-6 flex-align-left vertical-center">
+            <a href="#inicio"><img src="assets/img/ag-logo.svg" alt="Logo de [tu nombre]"></a>
+        </div>
+        
+        <!--Menú de navegación-->
+        <nav class="col-6 flex-row flex-align-end vertical-center regular-gap">
+            <ul id="menu" class="flex-row regular-gap">
+                <li><a href="#estudio">Estudio</a></li>
+                <li><a href="#portfolio">Proyectos</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#">Contacta</a></li>
+            </ul>
+
+            <!--Cambio de modo LIGHT / DARK-->
+            <input type="checkbox" id="dark-mode-toggle" class="vertical-center"/>
+                <label for="dark-mode-toggle" class="toggle"></label>
+
+           <!-- HAMBURGER -->
+            <button class="menu-toggle" id="menu-toggle">
+                <div class="menu-bar" data-position="top"></div>
+                <div class="menu-bar" data-position="bottom"></div>      
+            </button>
+
+        </nav>
+    </header>
+
+    <!-- ///////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- COMIENZA EL FULLSCREEN MENU -->
+    <!-- ///////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+    <div id="fsmenu-left" class="flex-column flex-align-end padding-big">
+        <ul class="flex-column big-gap mobile-menu">
+            <li><a href="#estudio">Estudio</a></li>
+            <li><a href="#portfolio">Proyectos</a></li>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#">Contacta</a></li>
+        </ul>
+    </div>
+
+    <!-- ///////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- COMIENZA EL CONTENIDO PRINCIPAL -->
+    <!-- ///////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+    <main id="inicio" class="main-container flex-column regular-gap">
+
+        <!-- Comienza la sección HERO //////////////////////////////////////////////////////////////////// -->
+
+        <section id="hero-section" class="flex-column flex-align-space padding-regular-v">        
+
+            <div class="top padding-regular-v">
+                <div>
+                    <p class="medium-text allcaps">Diseño para personas, <br/>hecho por personas</p>
+                </div>
+            </div>
+
+            <div class="bottom">
+                <div>
+                    <img src="assets/img/brand-stories-hero.svg" class="invert desktop">
+                    <img src="assets/img/brand-stories-hero-mobile.svg" class="invert mobile">
+                </div>
+
+                <div class="flex-row regular-gap">
+                    <p class="regular-text col-4">
+                        <span class="bold">Abel Guzmán</span><br/>
+                        Branding <br/>
+                        Design partner
+                    </p>
+
+                    <p class="regular-text col-4">
+                        Soluciono problemas de comunicación con ingeniería visual. Diseño con cerebro y alma. Diseño hecho por personas para personas. Más de 20 años al servicios del diseño.
+                    </p>
+                </div>
+            </div>
+
+        </section>
+
+        <section id="estudio" class="border-xbig-top padding-regular-v">
+                       
+            <div class="hero-text flex-column regular-gap">
+
+                <img src="assets/img/abel_profile_web.jpg">
+                <div class="top flex-row vertical-center flex-align-space">
+                <h5 class="section-heading">Estudio</h5>
+                        
+                    <a href="#" class="cta-primary">Saber más</a>
+                    
+                </div>
+
+                <p class="hero-text">
+                    Con más de 20 años de experiencia profesional, pongo cerebro y alma en cada proyecto. Creo tu marca e identidad digital con una metodología asentada sobre una estrategia clara y definida. Transformo las ideas en propuestas sólidas, memorables y perdurables en el tiempo. Diseño humano, hecho por personas. Para personas.
+                </p>
+            </div>
+        </section>
+
+            <!-- Comienza la sección PORTFOLIO /////////////////////////////////////////////////////////////// -->
+            
+            <div id="portfolio" class="clients flex-column padding-regular-v border-small-top regular-gap">
+                
+                <div class="top flex-row vertical-center flex-align-space">
+                    <h5 class="section-heading">Proyectos</h5>
+                    
+                    <a href="#" class="cta-primary">Ver proyectos</a>
+                   
+                </div>
+
+                <div class="bottom regular-gap"></div>
+                    <p class="portfolio">
+                        <!-- Portfolio Item 1 -->
+                        <a href="#">
+                            <span class="italic">SIA</span> Production Systems <sup class="country">(ESP)</sup>
+                        </a> /
+                        <!-- Portfolio Item 2 -->
+                        <a href="#">
+                            <span class="italic">Deep</span> Com Roots <sup class="country">(ESP)</sup>
+                        </a> /
+                        <!-- Portfolio Item 3 -->
+                        <a href="#">
+                            <span class="italic">NextGen</span> Energy <sup class="country">(ESP)</sup>
+                        </a> /
+                        <!-- Portfolio Item 4 -->
+                        <a href="#">
+                            <span class="italic">Spirec</span> Spain 2023 <sup class="country">(ESP)</sup>
+                        </a> /
+                        <!-- Portfolio Item 5 -->
+                        <a href="#">
+                            <span class="italic">MOJO</span> Music App <sup class="country">(ESP)</sup>
+                        </a> /
+
+                    </p>
+
+                    <div class="work-in-progress flex-column padding-regular-v">
+                        
+                        <div class="wrapper">
+                            <!-- WIP Item -->
+                            <div class="wip-item flex-row vertical-center flex-align-space">
+                                <p class="hero-text">Productora de cine</p>
+                                <p class="wip-project-category allcaps">Branding / UI / Web</p>
+                            </div>
+
+                            <!-- WIP Item -->                         
+                            <div class="wip-item flex-row vertical-center flex-align-space">
+                                <p class="hero-text">Consultora</p>
+                                <p class="wip-project-category allcaps">Branding / UI / Web</p>
+                            </div>
+
+                            <!-- WIP Item -->
+                            <div class="wip-item flex-row vertical-center flex-align-space">
+                                <p class="hero-text">Estudio de arquitectura</p>
+                                <p class="wip-project-category allcaps">UI / Web</p>
+                            </div>
+
+                            <!-- WIP Item -->
+                            <div class="wip-item flex-row vertical-center flex-align-space">
+                                <p class="hero-text">DJ</p>
+                                <p class="wip-project-category allcaps">Logo Design</p>
+                            </div>
+                         </div>
+
+                    </div>
+                </div>
+
+            </div>        
+
+        <!-- Comienza la sección SERVICIOS /////////////////////////////////////////////////////////////// -->
+
+        <section id="servicios" class="flex-row regular-gap padding-regular-v">
+            
+            <!-- Item -->
+            <div class="col-3 border-small-top">
+                <p>Branding estratégico</p>
+                <ul class="no-bullets">
+                    <li>Auditoría y análisis de marca</li>
+                    <li>Propuesta de valor</li>
+                    <li>Arquitectura de marca</li>
+                    <li>Identidad visual y verbal</li>
+                    <li>Acompañamiento e implementación</li>
+                </ul>
+
+            </div>
+
+           <!-- Item -->
+            <div class="col-3 border-small-top">
+                <p>Comunicación Visual</p>
+                <ul class="no-bullets">
+                    <li>Diseño Editorial</li>
+                    <li>Cartelería</li>
+                    <li>Presentaciones</li>
+                    <li>Redes Sociales</li>
+                </ul>
+
+            </div>
+
+            <!-- Item -->
+            <div class="col-3 border-small-top">
+                <p>Design Partner</p>
+                <ul class="no-bullets">
+                    <li>Supervisión de proyectos</li>
+                    <li>Acompañamiento equipo de diseño</li>
+                    <li>Estrategia y Creatividad</li>
+                    <li>Consultoría de Diseño</li>
+                </ul>
+
+            </div>
+
+        </section>
+
+        <!-- Comienza la sección SERVICIOS /////////////////////////////////////////////////////////////// -->
+
+        <section>
+       
+        </section>
+
+
+    </main>
+
+
+    <!-- ///////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- COMIENZA EL FOOTER -->
+    <!-- ///////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+    <footer>
+
+
+    </footer>
+ 
+    
+
+<!-- ///////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- SCRIPTS -->
+<!-- ///////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<!-- Full Screen Menu -->
+
+<script src="assets/js/hamburger.js"></script>
+
+
+</body>
+
+</html>

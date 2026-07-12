@@ -1,0 +1,43 @@
+:has(#dark-mode-toggle:checked) {
+  --primary-color: #FCFAF2;
+  --secondary-color: #1C0B10;
+  --accent-color: #1C0B10;
+  --accent-secondary-color: #0071FF;
+}
+
+/* *******************************************************/
+/* LIGHT / DARK MODE *************************************/
+/* *******************************************************/
+
+#dark-mode-toggle {
+  display: none;
+}
+
+.toggle {
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+  background: transparent;
+  border: 1px solid var(--secondary-color);
+  border-radius: 30px;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.3s;
+  scale: 0.75;
+}
+
+.toggle::before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 19px;
+  height: 19px;
+  background: var(--secondary-color);
+  border-radius: 50%;
+  transition: transform 0.2s;
+}
+
+#dark-mode-toggle:checked + .toggle::before {
+  transform: translateX(30px);
+}
