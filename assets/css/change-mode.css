@@ -1,8 +1,55 @@
-:has(#dark-mode-toggle:checked) {
-  --primary-color: #FCFAF2;
+/* ==========================================================================
+   1. MODO OSCURO GENERAL (Fondo oscuro por defecto si no hay otro acento)
+   ========================================================================== */
+html:has(#dark-mode-toggle:checked) {
+  --primary-color: #1C0B10;
+  --secondary-color: #FCFAF2;
+  --accent-color: #FCFAF2;
+  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+}
+
+/* ==========================================================================
+   2. LÓGICA EN MODO CLARO (LIGHT MODE) - Cambia el color del texto (secondary)
+   ========================================================================== */
+
+/* Acento 1: Por defecto (Oscuro) */
+html:has(#accent-default:checked) {
   --secondary-color: #1C0B10;
-  --accent-color: #1C0B10;
-  --accent-secondary-color: #0071FF;
+}
+
+/* Acento 2: Rojo */
+html:has(#accent-mode-2:checked) {
+  --secondary-color: var(--accent-color-1);
+}
+
+/* Acento 3: Azul */
+html:has(#accent-mode-3:checked) {
+  --secondary-color: var(--accent-color-3);
+}
+
+/* ==========================================================================
+   3. COMBINACIÓN DE DARK MODE + COLOR DE ACENTO SELECCIONADO
+   ========================================================================== */
+
+/* Dark Mode + Acento 1 (Fondo original oscuro de la marca) */
+html:has(#dark-mode-toggle:checked):has(#accent-default:checked) {
+  --primary-color: #1C0B10 !important;
+  --secondary-color: #FCFAF2 !important;
+  --accent-color: var(--accent-color-1) !important;
+}
+
+/* Dark Mode + Acento 2 (Fondo Rojo) */
+html:has(#dark-mode-toggle:checked):has(#accent-mode-2:checked) {
+  --primary-color: var(--accent-color-1) !important;
+  --secondary-color: #FCFAF2 !important;
+  --accent-color: var(--accent-color-1) !important;
+}
+
+/* Dark Mode + Acento 3 (Fondo Azul) */
+html:has(#dark-mode-toggle:checked):has(#accent-mode-3:checked) {
+  --primary-color: var(--accent-color-3) !important;
+  --secondary-color: #FCFAF2 !important;
+  --accent-color: var(--accent-color-3) !important;
 }
 
 /* *******************************************************/
@@ -22,7 +69,7 @@
   border-radius: 30px;
   position: relative;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background 0.3s, border-color 0.3s; /* Añadido border-color */
   scale: 0.75;
 }
 
@@ -35,9 +82,141 @@
   height: 19px;
   background: var(--secondary-color);
   border-radius: 50%;
-  transition: transform 0.2s;
+  transition: background 0.3s, border-color 0.3s; /* Añadido border-color */
 }
 
 #dark-mode-toggle:checked + .toggle::before {
   transform: translateX(30px);
+}
+
+/* Invierte el logotipo cuando el modo oscuro está activo */
+html:has(#dark-mode-toggle:checked) #logo img {
+  filter: invert(1);
+  transition: filter 0.4s ease; /* Transición suave idéntica al fondo */
+}
+
+
+/* Ocultamos los inputs de radio nativos */
+.accent-selectors input[type="radio"] {
+  display: none;
+}
+
+/* Estilo base para los 3 círculos (mismo tamaño que el toggle::before) */
+.circle-btn {
+  width: 19px;
+  height: 19px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: inline-block;
+  transition: transform 0.2s ease, border-color 0.3s ease;
+  border: 1px solid transparent;
+}
+
+/* Estilo base para los círculos de selección (siempre redondos y de 8px) */
+.circle-btn-color {
+  width: 8px !important;
+  height: 8px !important;
+  min-width: 8px !important;  /* Evita que colapse en navegadores antiguos */
+  min-height: 8px !important; /* Evita que colapse en navegadores antiguos */
+  border-radius: 50% !important;
+  cursor: pointer;
+  display: inline-block;
+  border: 1px solid transparent;
+  flex-shrink: 0 !important;   /* ¡La clave! Evita que Flexbox los deforme al reducir la pantalla */
+}
+
+/* Colores fijos de los círculos basados en tus variables de styles.css */
+.circle-btn-color.accent-1 { background-color: #393637; } /* --accent-color-1 */
+.circle-btn-color.accent-2 { background-color: #FF2737; } /* --accent-color-2 */
+.circle-btn-color.accent-3 { background-color: #274fff; } /* --accent-color-3 */
+
+/* Efecto de feedback visual (un borde del color secundario actual para saber cuál está activo) */
+.accent-selectors input[type="radio"]:checked + .circle-btn-color {
+  transform: scale(1.35);
+  border: 1px solid var(--secondary-color);
+}
+
+/* ==========================================================================
+   2. LÓGICA DE CAMBIO DE COLOR DE ACENTO
+   ========================================================================== */
+
+/* Si se activa el botón de acento 1 (Negro) */
+html:has(#accent-mode-1:checked) {
+  --primary-color: rgb(36, 36, 36);
+}
+
+   /* Si se activa el botón de acento 2 (Rojo) */
+html:has(#accent-mode-2:checked) {
+  --secondary-color: var(--accent-color-1);
+}
+
+/* Si se activa el botón de acento 3 (Azul) */
+html:has(#accent-mode-3:checked) {
+  --secondary-color: var(--accent-color-3);
+}
+
+/* Cuando el Dark Mode está activo Y se selecciona el acento 3 (Azul) */
+html:has(#dark-mode-toggle:checked):has(#accent-mode-3:checked) {
+  --primary-color: var(--accent-color-3) !important; /* Forzamos el fondo azul */
+  --secondary-color: #FCFAF2 !important;            /* Texto claro para que contraste */
+  --accent-color: var(--accent-color-3);               /* Tu color de acento secundario (Rojo) */
+}
+
+/* ==========================================================================
+   7. DUOTONO PERFECTO PARA LA FOTO DE PERFIL (SOLO CON ROJO O AZUL)
+   ========================================================================== */
+.profile-pic-container {
+  position: relative;
+  display: inline-block;
+  width: 100%; /* Se adapta al ancho del contenedor */
+  overflow: hidden;
+  /* El color de fondo por defecto es transparente para evitar teñir en negro */
+  background-color: transparent;
+  transition: background-color 0.45s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.profile-pic-container img {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* Por defecto, la foto se muestra en un elegante blanco y negro de alto contraste */
+  filter: grayscale(100%) contrast(1.1) brightness(0.95);
+  /* Sin modo de mezcla por defecto para evitar tintados con el botón negro */
+  mix-blend-mode: normal;
+  transition: filter 0.45s cubic-bezier(0.25, 1, 0.5, 1), mix-blend-mode 0.45s ease;
+}
+
+/* --- ESTADOS ACTIVOS SÓLO PARA COLORES (ACENTO 2 Y 3) --- */
+
+/* 1. Con Acento 2 (Rojo) */
+html:has(#accent-mode-2:checked) .profile-pic-container {
+  background-color: var(--accent-color-1); /* Fondo rojo */
+}
+html:has(#accent-mode-2:checked) .profile-pic-container img {
+  filter: grayscale(100%) contrast(1.2) brightness(1.25);
+  mix-blend-mode: multiply; /* Aplica el duotono rojo */
+}
+
+/* 2. Con Acento 3 (Azul) */
+html:has(#accent-mode-3:checked) .profile-pic-container {
+  background-color: var(--accent-color-3); /* Fondo azul */
+}
+html:has(#accent-mode-3:checked) .profile-pic-container img {
+  filter: grayscale(100%) contrast(1.2) brightness(1.25);
+  mix-blend-mode: multiply; /* Aplica el duotono azul */
+}
+
+/* --- ADAPTACIONES PARA MODO OSCURO (DARK MODE) --- */
+
+/* Si estamos en Modo Oscuro con Acento 2 (Rojo) o Acento 3 (Azul), mantenemos multiply pero ajustamos brillo */
+html:has(#dark-mode-toggle:checked):has(#accent-mode-2:checked) .profile-pic-container img,
+html:has(#dark-mode-toggle:checked):has(#accent-mode-3:checked) .profile-pic-container img {
+  mix-blend-mode: multiply;
+  filter: grayscale(100%) contrast(1.2) brightness(1.25);
+}
+
+/* Si estamos en Modo Oscuro con el primer botón (Negro/Por defecto), la foto se queda en su blanco y negro nativo */
+html:has(#dark-mode-toggle:checked):has(#accent-default:checked) .profile-pic-container img {
+  mix-blend-mode: normal;
+  filter: grayscale(100%) contrast(1.3) brightness(0.85);
 }

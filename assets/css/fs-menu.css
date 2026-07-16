@@ -47,10 +47,16 @@
 
 .menu-toggle.active .menu-bar[data-position=top] {
 	transform: translateY(0) rotate(45deg) scaleX(1.1);
+	filter: invert(1);
 }
 
 .menu-toggle.active .menu-bar[data-position=bottom] {
 	transform: translateY(0) rotate(-45deg) scaleX(1.1);
+	filter: invert(1);
+}
+
+.menu-toggle .active, #toggleMode.mode-active{
+	filter: invert(1)!important;
 }
 
 .menu-toggle {
@@ -150,6 +156,23 @@
 
 .menu-toggle{
 	display: flex;
+}
+
+#fsmenu-left.left-active{
+	width: 100vw;
+	transform: translatex(25vw) !important;
+}
+
+#fsmenu-left.padding-big{
+	padding: 2rem;
+}
+
+#fsmenu-left li{
+	padding: 0.5rem 0;
+}
+
+#fsmenu-left li a{
+	font-size: 3rem;
 }
     
 }

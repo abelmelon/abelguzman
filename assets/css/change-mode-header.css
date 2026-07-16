@@ -1,0 +1,169 @@
+/* ==========================================================================
+   1. DEFINICIÓN DE VARIABLE BASE PARA EL HEADER
+   ========================================================================== */
+:root {
+  /* Por defecto en modo claro, el color base del header es el fondo de la web */
+  --header-color: var(--primary-color);
+}
+
+/* ==========================================================================
+   2. CONFIGURACIÓN GENERAL DEL MODO OSCURO (DARK MODE)
+   ========================================================================== */
+html:has(#dark-mode-toggle:checked) {
+  --primary-color: #1C0B10;      /* Fondo oscuro fijo de la web */
+  --secondary-color: #FCFAF2;    /* Texto claro */
+  --accent-color: #FF2737;       /* Color de acento general */
+  --header-color: #1C0B10;       /* Por defecto, header fusionado en oscuro */
+  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+}
+
+/* ==========================================================================
+   3. LÓGICA EN MODO CLARO (LIGHT MODE)
+   Los círculos cambian solo el color del texto. El header se funde con el fondo.
+   ========================================================================== */
+
+/* Acento 1: Por defecto (Oscuro) */
+html:has(#accent-default:checked) {
+  --secondary-color: #1C0B10;
+  --header-color: var(--primary-color); 
+}
+
+/* Acento 2: Rojo */
+html:has(#accent-mode-2:checked) {
+  --secondary-color: var(--accent-color-1);
+  --header-color: var(--primary-color); 
+}
+
+/* Acento 3: Azul */
+html:has(#accent-mode-3:checked) {
+  --secondary-color: var(--accent-color-3);
+  --header-color: var(--primary-color); 
+}
+
+/* ==========================================================================
+   4. LÓGICA EN MODO OSCURO (DARK MODE) COMBINADO CON ACENTOS
+   El fondo general se queda fijo en oscuro (#1C0B10), SOLO cambia el header.
+   ========================================================================== */
+
+/* Dark Mode + Acento 1 (Fondo oscuro, header oscuro) */
+html:has(#dark-mode-toggle:checked):has(#accent-default:checked) {
+  --primary-color: #1C0B10 !important;
+  --secondary-color: #FCFAF2 !important;
+  --header-color: #1C0B10 !important;
+}
+
+/* Dark Mode + Acento 2 (Fondo oscuro, header se vuelve Rojo) */
+html:has(#dark-mode-toggle:checked):has(#accent-mode-2:checked) {
+  --primary-color: #1C0B10 !important; 
+  --secondary-color: #FCFAF2 !important; 
+  --header-color: var(--accent-color-1) !important; /* El header se tiñe de rojo */
+}
+
+/* Dark Mode + Acento 3 (Fondo oscuro, header se vuelve Azul) */
+html:has(#dark-mode-toggle:checked):has(#accent-mode-3:checked) {
+  --primary-color: #1C0B10 !important; 
+  --secondary-color: #FCFAF2 !important; 
+  --header-color: var(--accent-color-3) !important; /* El header se tiñe de azul */
+}
+
+
+/* ==========================================================================
+   5. ESTILOS ESPECÍFICOS DEL HEADER (GRADIENTE NO LINEAL + DIFUMINADO PROGRESIVO)
+   ========================================================================== */
+header {
+  width: 100%;
+  left: 0;
+  
+  /* Gradiente ultra suave de 7 paradas para evitar cambios bruscos de color */
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--header-color) 92%, transparent) 0%,
+    color-mix(in srgb, var(--header-color) 85%, transparent) 20%,
+    color-mix(in srgb, var(--header-color) 70%, transparent) 40%,
+    color-mix(in srgb, var(--header-color) 50%, transparent) 60%,
+    color-mix(in srgb, var(--header-color) 25%, transparent) 80%,
+    color-mix(in srgb, var(--header-color) 8%, transparent) 92%,
+    transparent 100
+  ) !important;
+  
+  /* Filtro de desenfoque esmerilado de fondo */
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  
+  /* Máscara progresiva que desvanece el desenfoque hacia abajo de forma invisible */
+  mask-image: linear-gradient(to bottom, black 0%, black 60%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 60%, transparent 100%);
+  
+  transition: background 0.4s ease;
+}
+
+
+/* ==========================================================================
+   6. INTERFAZ VISUAL (TOGGLE Y BOTONES DE COLORES)
+   ========================================================================== */
+
+#dark-mode-toggle {
+  display: none;
+}
+
+.toggle {
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+  background: transparent;
+  border: 1px solid var(--secondary-color);
+  border-radius: 30px;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.3s, border-color 0.3s;
+  scale: 0.75;
+}
+
+.toggle::before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 19px;
+  height: 19px;
+  background: var(--secondary-color);
+  border-radius: 50%;
+  transition: background 0.3s, border-color 0.3s;
+}
+
+#dark-mode-toggle:checked + .toggle::before {
+  transform: translateX(30px);
+}
+
+/* Invierte el logotipo cuando el modo oscuro está activo */
+html:has(#dark-mode-toggle:checked) #logo img {
+  filter: invert(1);
+  transition: filter 0.4s ease;
+}
+
+/* Ocultamos los inputs de radio nativos */
+.accent-selectors input[type="radio"] {
+  display: none;
+}
+
+/* Estilo base para los círculos de selección */
+.circle-btn-color {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: inline-block;
+  transition: transform 0.2s ease, border-color 0.3s ease;
+  border: 1px solid transparent;
+}
+
+/* Colores visuales de los botones en el menú */
+.circle-btn-color.accent-1 { background-color: #1C0B10; } /* Oscuro */
+.circle-btn-color.accent-2 { background-color: #FF2737; } /* Rojo */
+.circle-btn-color.accent-3 { background-color: #274fff; } /* Azul */
+
+/* Feedback visual de selección */
+.accent-selectors input[type="radio"]:checked + .circle-btn-color {
+  transform: scale(1.35);
+  border: 1px solid var(--secondary-color);
+}
